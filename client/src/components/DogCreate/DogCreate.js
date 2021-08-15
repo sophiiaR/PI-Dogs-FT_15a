@@ -4,12 +4,28 @@ import { Link, useHistory } from 'react-router-dom';
 import { getTemperaments, postDog } from '../../actions';
 import { useSelector, useDispatch } from 'react-redux';
 
-
+const validateDogData = (dogData) => {
+    let errors = {};
+    if(!dogData.name) {
+        errors.name = 'You must enter a name';
+    } 
+    if(!dogData.height) {
+        errors.height = 'You must enter a height';
+    } 
+    if(!dogData.weight) {
+        errors.weight = 'You must enter a weight';
+    } 
+    if(!dogData.life_span) {
+        errors.life_span = 'You must enter a lifespan';
+    } 
+    return errors;
+}
 
 const DogCreate = () => {
     const dispatch = useDispatch();
     const temperaments = useSelector((state) => state.temperaments);
     const history = useHistory();
+    const [errors, setErrors] = useState({});
 
     const [dogData, setDogData] = useState({
         name: '',
@@ -30,6 +46,10 @@ const DogCreate = () => {
             [e.target.name] : e.target.value
         })
         console.log(dogData)
+        setErrors(validateDogData({
+            ...dogData,
+            [e.target.name] : e.target.value
+        }));
     }
 
     const handleSelect = (e) => {
@@ -68,7 +88,11 @@ const DogCreate = () => {
                         value={dogData.name}
                         name="name"
                         onChange={(e) => handleInputChange(e)}
+                        required
                     />
+                    {errors.name && (
+                        <p>{errors.name}</p>
+                    )}
                 </div>
                 <div>
                     <label>Height:</label>
@@ -76,9 +100,13 @@ const DogCreate = () => {
                         type="text"
                         value={dogData.height}
                         name="height"
-                        placeholder = "min-max in cm"
+                        placeholder = "min - max in cm"
                         onChange={(e) => handleInputChange(e)}
+                        required
                     />
+                    {errors.height && (
+                        <p>{errors.height}</p>
+                    )}
                 </div>
                 <div>
                     <label>Weight:</label>
@@ -86,9 +114,13 @@ const DogCreate = () => {
                         type="text"
                         value={dogData.weight}
                         name="weight"
-                        placeholder = "min-max in kg"
+                        placeholder = "min - max in kg"
                         onChange={(e) => handleInputChange(e)}
+                        required
                     />
+                    {errors.weight && (
+                        <p>{errors.weight}</p>
+                    )}
                 </div>
                 <div>
                     <label>Lifespan:</label>
@@ -98,7 +130,11 @@ const DogCreate = () => {
                         name="life_span"
                         placeholder = "in years"
                         onChange={(e) => handleInputChange(e)}
+                        required
                     />
+                    {errors.life_span && (
+                        <p>{errors.life_span}</p>
+                    )}
                 </div>
                 <div>
                     <label>Image:</label>
