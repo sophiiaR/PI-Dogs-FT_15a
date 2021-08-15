@@ -26,7 +26,6 @@ const DogCreate = () => {
     const temperaments = useSelector((state) => state.temperaments);
     const history = useHistory();
     const [errors, setErrors] = useState({});
-
     const [dogData, setDogData] = useState({
         name: '',
 		height: '',
@@ -73,6 +72,13 @@ const DogCreate = () => {
 		    temperament: [] 
         });
         history.push('/home');
+    }
+
+    const handleDelete = (t) => {
+        setDogData({
+            ...dogData,
+            temperament: dogData.temperament.filter(temp => temp !== t)
+        });
     }
 
 
@@ -155,8 +161,13 @@ const DogCreate = () => {
                 </select>
                 <ul><li>{dogData.temperament.map(t => t + ', ')}</li></ul>
                 <button type="submit">Create Dog</button>
-                
             </form>
+            {dogData.temperament.map(t =>
+                <div>
+                    <p>{t}</p>
+                    <button onClick={() => handleDelete(t)}>x</button>
+                </div>
+                )}
         </div>
     )
 }
