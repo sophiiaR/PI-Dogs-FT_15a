@@ -64,5 +64,19 @@ export function postDog(payload) {
     }
 }
 
+export function getDogDetail(id) {
+    return async function(dispatch) {
+        try {
+            const dogDet = await axios.get('http://localhost:3001/dogs/' + id);
+            console.log(dogDet)
+            return dispatch({
+                type: 'GET_DOG_DETAIL',
+                payload: dogDet.data
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
 
-export function filterDogsByTemperament(payload) {}
+
