@@ -9,14 +9,20 @@ const validateDogData = (dogData) => {
     if(!dogData.name) {
         errors.name = 'You must enter a name';
     } 
-    if(!dogData.height) {
-        errors.height = 'You must enter a height';
-    } 
-    if(!dogData.weight) {
-        errors.weight = 'You must enter a weight';
-    } 
-    if(!dogData.life_span) {
-        errors.life_span = 'You must enter a lifespan';
+    if(dogData.height && !/\d{1,2}-\d{1,2}/g.test(dogData.height)) {
+        errors.height = 'You must enter a height in range. Example: 10-35 cm';
+    } else {
+        errors.height = "";
+    }
+    if(dogData.weight && !/\d{1,2}-\d{1,2}/g.test(dogData.weight)) {
+        errors.weight = 'You must enter a weight in range. Example: 6-8 kg';
+    } else {
+        errors.weight = "";
+    }
+    if(dogData.life_span && !/\d{1,2}-\d{1,2}/g.test(dogData.life_span)) {
+        errors.life_span = 'You must enter a lifespan in range. Example: 5-10 years';
+    } else {
+        errors.life_span = "";
     } 
     return errors;
 }
@@ -95,7 +101,7 @@ const DogCreate = () => {
                         name="name"
                         onChange={(e) => handleInputChange(e)}
                         required
-                    />
+                    /> 
                     {errors.name && (
                         <p>{errors.name}</p>
                     )}
@@ -106,10 +112,10 @@ const DogCreate = () => {
                         type="text"
                         value={dogData.height}
                         name="height"
-                        placeholder = "min - max in cm"
+                        placeholder = "min-max in cm"
                         onChange={(e) => handleInputChange(e)}
                         required
-                    />
+                    /> cm
                     {errors.height && (
                         <p>{errors.height}</p>
                     )}
@@ -120,10 +126,10 @@ const DogCreate = () => {
                         type="text"
                         value={dogData.weight}
                         name="weight"
-                        placeholder = "min - max in kg"
+                        placeholder = "min-max in kg"
                         onChange={(e) => handleInputChange(e)}
                         required
-                    />
+                    /> kg
                     {errors.weight && (
                         <p>{errors.weight}</p>
                     )}
@@ -134,10 +140,10 @@ const DogCreate = () => {
                         type="text"
                         value={dogData.life_span}
                         name="life_span"
-                        placeholder = "in years"
+                        placeholder = "min-max in years"
                         onChange={(e) => handleInputChange(e)}
                         required
-                    />
+                    /> years
                     {errors.life_span && (
                         <p>{errors.life_span}</p>
                     )}
