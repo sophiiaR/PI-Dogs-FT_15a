@@ -22,10 +22,10 @@ const DogDetail = (props) => {
                 <div>
                     <h1>{detail[0].name}</h1>
                     <img src={detail[0].image.url ? detail[0].image.url : detail[0].image} alt="" width="600px" height="380px"/>
-                    <p>Temperaments: {!detail[0].createdInDb ? detail[0].temperament + ', ' : detail[0].temperaments.map(el => el.name + (' ')) }</p>
-                    <p>Height: {detail[0].height.metric} cm</p>
-                    <p>Weight: {detail[0].weight.metric} kg</p>
-                    <p>Lifespan: {detail[0].life_span}</p>
+                    <p>Temperaments: {!detail[0].createdInDb ? detail[0].temperament + ', ' : detail[0].temperaments.map(el => el.name + (', '))}</p>
+                    <p>Height: {!detail[0].createdInDb ? detail[0].height.metric : detail[0].height} cm</p>
+                    <p>Weight: {!detail[0].createdInDb ? detail[0].weight.metric : detail[0].weight} kg</p>
+                    <p>Lifespan: {!detail[0].createdInDb? detail[0].life_span : detail[0].life_span + (' years')}</p>
                 </div>    
         : <p>Loading...</p>}
             <Link to='/home'>
