@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { getTemperaments, postDog } from '../../actions';
 import { useSelector, useDispatch } from 'react-redux';
+import style from './DogCreate.module.css';
 
 const validateDogData = (dogData) => {
     let errors = {};
@@ -10,17 +11,17 @@ const validateDogData = (dogData) => {
         errors.name = 'You must enter a name';
     } 
     if(dogData.height && !/\d{1,2}-\d{1,2}/g.test(dogData.height)) {
-        errors.height = 'You must enter a height in range. Example: 10-35 cm';
+        errors.height = 'You must enter a height in range. E.g: 10-35 cm';
     } else {
         errors.height = "";
     }
     if(dogData.weight && !/\d{1,2}-\d{1,2}/g.test(dogData.weight)) {
-        errors.weight = 'You must enter a weight in range. Example: 6-8 kg';
+        errors.weight = 'You must enter a weight in range. E.g: 6-8 kg';
     } else {
         errors.weight = "";
     }
     if(dogData.life_span && !/\d{1,2}-\d{1,2}/g.test(dogData.life_span)) {
-        errors.life_span = 'You must enter a lifespan in range. Example: 5-10 years';
+        errors.life_span = 'You must enter a lifespan in range. E.g: 5-10 years';
     } else {
         errors.life_span = "";
     } 
@@ -89,25 +90,31 @@ const DogCreate = () => {
 
 
     return (
-        <div>
-            <Link to = '/home'><button>Home</button></Link>
-            <h1>Create your breed</h1>
+        <div className={style.dogCreate}>
+            <div className={style.content}>
+            <Link to = '/home'><button className={style.homeButton}>Home</button></Link>
+            <h1>Create your dog's breed</h1>
             <form onSubmit={(e) => handleSubmit(e)}>
-                <div>
-                    <label>Name:</label>
-                    <input
-                        type="text"
-                        value={dogData.name}
-                        name="name"
-                        onChange={(e) => handleInputChange(e)}
-                        required
-                    /> 
-                    {errors.name && (
-                        <p>{errors.name}</p>
-                    )}
+                <div className={style.dogDetail}>
+                    <div className={style.inputBox}>
+                        <label className={style.detail}>Name:</label>
+                        <input
+                            type="text"
+                            value={dogData.name}
+                            name="name"
+                            onChange={(e) => handleInputChange(e)}
+                            required
+                        /> 
+                        <div className={style.error}>
+                        {errors.name && (
+                            <p>{errors.name}</p>
+                        )}
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label>Height:</label>
+                <div className={style.dogDetail}>
+                    <div className={style.inputBox}>
+                    <label className={style.detail}>Height:</label>
                     <input
                         type="text"
                         value={dogData.height}
@@ -115,13 +122,17 @@ const DogCreate = () => {
                         placeholder = "min-max in cm"
                         onChange={(e) => handleInputChange(e)}
                         required
-                    /> cm
+                    /> 
+                    <div className={style.error}>
                     {errors.height && (
                         <p>{errors.height}</p>
                     )}
+                    </div>
+                    </div>
                 </div>
-                <div>
-                    <label>Weight:</label>
+                <div className={style.dogDetail}>
+                    <div className={style.inputBox}>
+                    <label className={style.detail}>Weight:</label>
                     <input
                         type="text"
                         value={dogData.weight}
@@ -129,13 +140,18 @@ const DogCreate = () => {
                         placeholder = "min-max in kg"
                         onChange={(e) => handleInputChange(e)}
                         required
-                    /> kg
+                    /> 
+                    <div className={style.error}>
+
                     {errors.weight && (
                         <p>{errors.weight}</p>
                     )}
+                    </div>
+                    </div>
                 </div>
-                <div>
-                    <label>Lifespan:</label>
+                <div className={style.dogDetail}>
+                    <div className={style.inputBox}>
+                    <label className={style.detail}>Lifespan:</label>
                     <input
                         type="text"
                         value={dogData.life_span}
@@ -143,13 +159,17 @@ const DogCreate = () => {
                         placeholder = "min-max in years"
                         onChange={(e) => handleInputChange(e)}
                         required
-                    /> years
+                    /> 
+                    <div className={style.error}>
                     {errors.life_span && (
                         <p>{errors.life_span}</p>
                     )}
+                    </div>
+                    </div>
                 </div>
-                <div>
-                    <label>Image:</label>
+                <div className={style.dogDetail}>
+                    <div className={style.inputBox}>
+                    <label className={style.detail}>Image:</label>
                     <input
                         type="text"
                         value={dogData.image}
@@ -157,6 +177,7 @@ const DogCreate = () => {
                         placeholder = "image url"
                         onChange={(e) => handleInputChange(e)}
                     />
+                    </div>
                 </div>
                 <select onChange={(e) => handleSelect(e)}>
                     {temperaments.map((temp) => {
@@ -166,14 +187,15 @@ const DogCreate = () => {
                     })}
                 </select>
                 <ul><li>{dogData.temperament.map(t => t + ', ')}</li></ul>
-                <button type="submit">Create Dog</button>
+                <button type="submit" className={style.createButton}>Create Dog</button>
             </form>
-            {dogData.temperament.map(t =>
+            {/* {dogData.temperament.map(t =>
                 <div>
                     <p>{t}</p>
                     <button onClick={() => handleDelete(t)}>x</button>
                 </div>
-                )}
+                )} */}
+                </div>
         </div>
     )
 }
