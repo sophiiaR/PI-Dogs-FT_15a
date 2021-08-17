@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Palette+Mosaic&family=Roboto:wght@300;400&display=swap');
+
+.dogstyle {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
+    /* background-image: linear-gradient(#0F2027, #203A43, #2C5364); */
+    background-image: linear-gradient(#bdc3c7, #2c3e50);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: "Noto Sans", "Calibri", "Trebuchet MS", sans-serif;
+    margin-top: 0px;
+}
+
+.content {
+    width: auto;
+    margin-left: 50px;
+    margin-top: 0px;
+    margin-right: 50px;
+}
+
+.content h1 {
+    color: black;
+    border: none;
+    justify-content: center;
+    background-color: #121619;
+    height: 80px;
+    width: auto;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 50px;
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-top: 5px;
+}
+ 
+.content p {
+    padding: 10px;
+    font-size: 30px;
+    font-weight: lighter;
+    color: black;
+    font-family: "Noto Sans";
+}
+
+.content img {
+    width: 600px;
+    height: 450px;
+}
+  
+  .button {
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    justify-content: center;
+    background-color: #121619;
+    height: 60px;
+    width: 180px;
+    color: white;
+    text-decoration: none;
+    font-size: 26px;
+    margin-left: 50px;
+    margin-bottom: 10px;
+  }
+  
+  .button:hover {
+    background-color: #07090a;
+    cursor: pointer;
+    transition: 0.3s ease-in;
+  }
+
+  @media only screen and (max-width: 650px) {
+    .dogstyle {
+      justify-content: center;
+      align-items: center;
+    }
+    /* .content h1,
+    .content p {
+    } */
+  
+    .content {
+      margin-left: 50px;
+      padding: 10px;
+      width: auto;
+      display: flex;
+      justify-content: left;
+      align-items: left;
+      flex-direction: column;
+    }
+  
+    .content h1 {
+        color: black;
+        border: none;
+        justify-content: center;
+        background-color: #121619;
+        height: 60px;
+        width: auto;
+        color: white;
+        text-decoration: none;
+        text-align: center;
+        font-size: 35px;
+        margin-right: 0px;
+        margin-left: 0px;
+        padding-top: 5px;
+    }
+
+    .content img {
+        width: 300px;
+        height: 250px;
+    }
+  
+    .content p {
+      font-size: 20px;
+      color: #0a0a0a;
+      text-align: left;
+      margin-top: 0px;
+    margin-bottom: 0px;
+    }
+  
+    .button {
+      background-color: #121619;
+      color: white;
+      margin-bottom: 10px;
+      margin-left: 0px;
+      height: 40px;
+      width: 120px;
+      font-size: 18px;
+    }
+  
+    .button:hover {
+    background-color: #07090a;
+    color: white;
+    }
+  }
