@@ -17,8 +17,8 @@ const Home = () => {
     
     const [render, setRender] = useState('');
     const [dogsPerPage] = useState(9);
-    const indexOfLastDog = pageN * dogsPerPage;
-    const indexOfFirstDog = indexOfLastDog - dogsPerPage;
+    const indexOfLastDog = pageN * dogsPerPage; 
+    const indexOfFirstDog = indexOfLastDog - dogsPerPage;  
     const currentDogs = dogs.slice(indexOfFirstDog, indexOfLastDog); 
 
     const paginate = (pageNumber) => {
@@ -114,11 +114,8 @@ const Home = () => {
                                     <DogCard 
                                         key={dog.id}
                                         name={dog.name} 
-                                        //image={dog.image.url ? dog.image.url : dog.image} 
                                         image={dog.createdInDb ? dog.image : dog.image.url}
-                                        temperament = {dog.temperaments ? dog.temperaments.map(el => el.name + (', ')) : dog.temperament}
-                                        //temperament={dog.temperament ? dog.temperament : dog.temperaments.map(e l => el.name + (', '))}
-                                    />
+                                        temperament = {dog.temperaments ? dog.temperaments.map(el => el.name + (', ')) : dog.temperament}                                    />
                                 </Link>
                             </Fragment>
                         );
