@@ -14,16 +14,30 @@ export function getDogs() {
     }
 }
 export function filterCreated(payload) {
-    console.log(payload)
     return ({
         type: 'FILTER_CREATED',
         payload
     })
 }
 
+export function filterByTemperament(payload) {
+    console.log(payload)
+    return {
+        type: 'FILTER_BY_TEMPERAMENT',
+        payload
+    }
+}
+
 export function orderDogsByName(payload) {
     return {
         type: 'ORDER_BY_NAME',
+        payload
+    }
+}
+
+export function orderDogsByWeight(payload) {
+    return {
+        type: 'ORDER_BY_WEIGHT',
         payload
     }
 }
@@ -39,6 +53,13 @@ export function getDogsByName(payload) {
         } catch (error) {
             console.log(error)
         }
+    }
+}
+
+export function page (payload) {
+    return {
+        type: 'PAGE',
+        payload
     }
 }
 
