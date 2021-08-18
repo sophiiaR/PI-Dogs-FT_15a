@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getDogs, filterCreated, orderDogsByName, getTemperaments, filterByTemperament, orderDogsByWeight } from '../../actions/index';
+import { getDogs, filterCreated, orderDogsByName, page, getTemperaments, filterByTemperament, orderDogsByWeight } from '../../actions/index';
 import DogCard from '../DogCard/DogCard';
 import Paginate from '../Paginate/Paginate';
 import SearchBar from '../SearchBar/SearchBar';
@@ -12,17 +12,17 @@ import style from './Home.module.css';
 const Home = () => {
     const dispatch = useDispatch();
     const dogs = useSelector((state) => state.allDogs);
+    const pageN = useSelector((state) => state.page);
     const temperaments = useSelector((state) => state.temperaments);
     
     const [render, setRender] = useState('');
-    const [currentPage, setCurrentPage] = useState(1);
     const [dogsPerPage] = useState(9);
-    const indexOfLastDog = currentPage * dogsPerPage;
+    const indexOfLastDog = pageN * dogsPerPage;
     const indexOfFirstDog = indexOfLastDog - dogsPerPage;
     const currentDogs = dogs.slice(indexOfFirstDog, indexOfLastDog); 
 
     const paginate = (pageNumber) => {
-        setCurrentPage(pageNumber);
+        dispatch(page(pageNumber));
     }
 
     useEffect(() => {
@@ -43,6 +43,7 @@ const Home = () => {
     }
 
     const handleFilterTemperament = (e) => {
+        e.preventDefault();
         console.log(e.target.value)
         dispatch(filterByTemperament(e.target.value));
     }
@@ -50,14 +51,12 @@ const Home = () => {
     const handleSort = (e) => {
         e.preventDefault();
         dispatch(orderDogsByName(e.target.value));
-        setCurrentPage(1);
         setRender(`Ordenado ${e.target.value}`);
     }
 
     const handleSortWeight = (e) => {
         e.preventDefault();
         dispatch(orderDogsByWeight(e.target.value));
-        setCurrentPage(1);
         setRender(`Ordenado ${e.target.value}`);
     }
 
