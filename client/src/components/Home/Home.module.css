@@ -80,7 +80,30 @@
 
 .content .content1 .cards {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 10px;
+}
+
+.content .content1 .cards a {
+    text-decoration: none;
+    justify-content: center;
+    margin-left: 10px;
+    margin-left: 0px;
+    border-radius: 10px;
+    padding: 10px;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    border-color: #121619;
+    border: solid;
+    margin-bottom: 10px;
+}
+
+.content .content1 .cards .a img {
+justify-content: center;
 }
 
 @media (max-width: 800px) {
@@ -115,9 +138,9 @@
         margin-bottom: 3px;
     }
 
-    .content h1 {
+    .content .content1 h1 {
         font-size: 50px;
-        display: inline-block;
+        display: inline;
     }
 
     .content .content1 .cards {
