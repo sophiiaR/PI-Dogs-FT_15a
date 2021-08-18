@@ -48,7 +48,7 @@ export function getDogsByName(payload) {
             const dogsByName = await axios.get('http://localhost:3001/dogs?name=' + payload);
             return dispatch ({
                 type: 'GET_DOGS_BY_NAME',
-                payload: dogsByName.data //lo que devuelve la ruta /dogs luego de haber buscado por el query name
+                payload: dogsByName.data 
             })
         } catch (error) {
             console.log(error)
