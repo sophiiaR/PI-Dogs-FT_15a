@@ -1,20 +1,22 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getDogs, filterCreated, orderDogsByName } from '../../actions/index';
+import { getDogs, filterCreated, orderDogsByName, getTemperaments, filterByTemperament, orderDogsByWeight } from '../../actions/index';
 import DogCard from '../DogCard/DogCard';
 import Paginate from '../Paginate/Paginate';
 import SearchBar from '../SearchBar/SearchBar';
+import style from './Home.module.css';
 
 
 const Home = () => {
     const dispatch = useDispatch();
     const dogs = useSelector((state) => state.allDogs);
+    const temperaments = useSelector((state) => state.temperaments);
     
     const [render, setRender] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
-    const [dogsPerPage, setDogsPerPage] = useState(9);
+    const [dogsPerPage] = useState(9);
     const indexOfLastDog = currentPage * dogsPerPage;
     const indexOfFirstDog = indexOfLastDog - dogsPerPage;
     const currentDogs = dogs.slice(indexOfFirstDog, indexOfLastDog); 
@@ -27,13 +29,22 @@ const Home = () => {
         dispatch(getDogs())
     }, [dispatch])
 
+    useEffect(() => {
+        dispatch(getTemperaments())
+    }, [dispatch])
+
     const handleClick = (e) => {
         e.preventDefault();
-        dispatch(getDogs);
+        dispatch(getDogs());
     }
 
     const handleFilterCreated = (e) => {
         dispatch(filterCreated(e.target.value));
+    }
+
+    const handleFilterTemperament = (e) => {
+        console.log(e.target.value)
+        dispatch(filterByTemperament(e.target.value));
     }
 
     const handleSort = (e) => {
@@ -43,52 +54,78 @@ const Home = () => {
         setRender(`Ordenado ${e.target.value}`);
     }
 
+    const handleSortWeight = (e) => {
+        e.preventDefault();
+        dispatch(orderDogsByWeight(e.target.value));
+        setCurrentPage(1);
+        setRender(`Ordenado ${e.target.value}`);
+    }
+
     return (
-        <div>
-            <div>
-                <h1>Dogs' Info</h1>
-                <Link to = '/create'>Create Breed</Link>
-                <button onClick={(e) => handleClick(e)}>Volver a cargar todos los dogs</button>
-            </div>
-            <div>
-                <select onChange={(e) => handleSort(e)}>
-                    <option value="A-Z">A-Z</option>
-                    <option value="Z-A">Z-A</option>
-                </select>
-                <select>
-                    <option value="H-L">Heaviest to Lightest</option>
-                    <option value="L-H">Lightest to Heaviest</option>
-                </select>
-                <select>
-                    <option value="defaultValue">
-                        Select temperaments
-                    </option>
-                </select>
-                <select onChange={(e) => handleFilterCreated(e)}>
-                    <option value="All">All</option>
-                    <option value="Created">Created</option>
-                    <option value="Api">Api</option>
-                </select>
+        <div className={style.content}>
+            <div className={style.content1}>
+                <div>
+                    <h1>Dogspedia</h1>
+                    <div className={style.create}>
+                    <button className={style.button1}><Link to = '/create'>Create Breed</Link></button>
+                    </div>
+                    <button onClick={(e) => handleClick(e)} className={style.button1}>Load dogs</button>
+                </div>
+                <div className={style.options}>
+                    <div className={style.onerow}>
+                        <label className={style.label}>Sort By </label>
+                        <select onChange={(e) => handleSort(e)}>
+                            <option value="A-Z">A-Z</option>
+                            <option value="Z-A">Z-A</option>
+                        </select>
+                        <select onChange={(e) => handleSortWeight(e)}>
+                            <option value="H-L">Heaviest to Lightest</option>
+                            <option value="L-H">Lightest to Heaviest</option>
+                        </select>
+                    </div>
+                    <div className={style.onerow}>
+                        <label className={style.label}>Filter By </label>
+                        <select onChange={(e) => handleFilterTemperament(e)}>
+                            <option>
+                                Select a Temperament
+                            </option> 
+                            {temperaments && temperaments.map(
+                                t => <option value={t.name} key={t.id}>{t.name}</option>
+                                )}
+                        </select>
+                        <select onChange={(e) => handleFilterCreated(e)}>
+                            <option value="All">All</option>
+                            <option value="Created">Created</option>
+                            <option value="Api">Api</option>
+                        </select>
+                    </div>
+                </div>
                 <SearchBar />
                 <Paginate
                     dogsPerPage = {dogsPerPage}
                     dogs = {dogs.length}
                     paginate = {paginate}
                 />
+                <div className={style.cards}>
                 {
                     currentDogs?.map(dog => {
                         return (
-                            <Link to={'/home/' + dog.id}>
-                                <DogCard 
-                                    key={dog.id}
-                                    name={dog.name} 
-                                    image={dog.image.url ? dog.image.url : dog.image} 
-                                    temperament={dog.temperament}
-                                />
-                            </Link>
+                            <Fragment>
+                                <Link to={'/detail/' + dog.id}>
+                                    <DogCard 
+                                        key={dog.id}
+                                        name={dog.name} 
+                                        //image={dog.image.url ? dog.image.url : dog.image} 
+                                        image={dog.createdInDb ? dog.image : dog.image.url}
+                                        temperament = {dog.temperaments ? dog.temperaments.map(el => el.name + (', ')) : dog.temperament}
+                                        //temperament={dog.temperament ? dog.temperament : dog.temperaments.map(e l => el.name + (', '))}
+                                    />
+                                </Link>
+                            </Fragment>
                         );
                     })
                 }
+                </div>
             </div>
         </div>
     )

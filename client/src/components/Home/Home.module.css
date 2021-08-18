@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Palette+Mosaic&family=Roboto:wght@300;400&display=swap');
+
+.content {
+    background-image: linear-gradient(#bdc3c7, #2c3e50);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: "Noto Sans", "Calibri", "Trebuchet MS", sans-serif;
+    margin-top: 0px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
+}
+
+.content .content1 {
+    margin-left: 50px;
+}
+
+.content h1 {
+    font-family: "Palette Mosaic";
+    font-size: 80px;
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    border: none;
+    justify-content: center;
+    background-color: #121619;
+    height: 120px;
+    width: auto;
+    color: white;
+    margin-right: 50px;
+}
+
+.content select {
+    height: 30px;
+    width: 35%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    margin-bottom: 25px;
+    margin-top: 25px;
+    margin-right: 25px;
+}
+
+.content .options {
+    display: inline;
+}
+
+.content .options .onerow {
+    justify-content: space-between;
+}
+
+.content .options .onerow .label {
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+.content .button1 {
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    justify-content: center;
+    background-color: #121619;
+    height: 40px;
+    width: 150px;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.content .content1 .cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 800px) {
+    .content .content1 .cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .content .content1 {
+      padding: 10px;
+      width: auto;
+      display: flex;
+      justify-content: left;
+      align-items: left;
+      flex-direction: column;
+    }
+
+    .content .options .onerow{
+       display: inline-grid;
+    }
+
+    .content select {
+        font-size: 20px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        width: 100%;
+    }
+
+    .content .options .onerow .label {
+        margin-top: 15px;
+        margin-bottom: 3px;
+    }
+
+    .content h1 {
+        font-size: 50px;
+        display: inline-block;
+    }
+
+    .content .content1 .cards {
+        grid-template-columns: 1fr;
+      }
+    
+}
