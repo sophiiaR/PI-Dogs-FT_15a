@@ -81,12 +81,12 @@ const DogCreate = () => {
         history.push('/home');
     }
 
-    const handleDelete = (t) => {
-        setDogData({
-            ...dogData,
-            temperament: dogData.temperament.filter(temp => temp !== t)
-        });
-    }
+    // const handleDelete = (t) => {
+    //     setDogData({
+    //         ...dogData,
+    //         temperament: dogData.temperament.filter(temp => temp !== t)
+    //     });
+    // }
 
 
     return (
