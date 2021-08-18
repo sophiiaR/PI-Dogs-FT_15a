@@ -6,11 +6,12 @@ const { Dog, conn } = require('../../src/db.js');
 
 const agent = session(app);
 const dog = {
-  name: 'Pug',
-  height: '35-52',
-  weight: '13-17',
-  life_span: '8-10',
-  temperament: [1, 17, 26]
+  name: 'Sawert',
+  height: '20-30',
+  weight: '10-12',
+  life_span: '6-7',
+  temperament: [4,9,14],
+  image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9jUGCKLmLDxoHi7eUg7da2EZ4snuIV9MeZw&usqp=CAU'
 };
 
 describe('Dogs routes', () => {

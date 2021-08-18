@@ -15,7 +15,7 @@ describe('Dog model', () => {
           .catch(() => done());
       });
       it('should work when its a valid name', () => {
-        Dog.create({ name: 'Pug' });
+        Dog.create({ name: 'Sawert' });
       });
     });
   });
