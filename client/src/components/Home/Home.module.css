@@ -78,6 +78,11 @@
     margin-top: 20px;
 }
 
+.content .content1 .create .button1 a {
+    text-decoration: none;
+    color: white;
+}
+
 .content .content1 .cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
