@@ -1,4 +1,5 @@
 import React from 'react';
+import style from './Paginate.module.css';
 
 const Paginate = ({ dogsPerPage, dogs, paginate}) => {
     const pageNumbers = [];
@@ -8,8 +9,8 @@ const Paginate = ({ dogsPerPage, dogs, paginate}) => {
     }
     
     return (
-            <nav>
-                <ul>
+            <div className={style.content}>
+                <ul className={style.pageNumbers}>
                     {
                         pageNumbers && pageNumbers.map(num => {
                             return(
@@ -20,7 +21,7 @@ const Paginate = ({ dogsPerPage, dogs, paginate}) => {
                         })
                     }
                 </ul>
-            </nav>
+            </div>
     )
 }
 

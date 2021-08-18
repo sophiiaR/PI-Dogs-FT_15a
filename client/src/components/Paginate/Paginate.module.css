@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Palette+Mosaic&family=Roboto:wght@300;400&display=swap');
+
+.content {
+    justify-content: center;
+}
+
+.content .pageNumbers {
+    list-style: none;
+    display: flex;
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+  
+  .content .pageNumbers li {
+    padding: 8px;
+    border: 1px solid white;
+    cursor: pointer;
+  }
+  
+  .content .pageNumbers li.active {
+    background-color: white;
+    color: black;
+  }
+  
+  .content .pageNumbers li button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  .content .pageNumbers li button:hover {
+    background-color: white;
+    color: black;
+  }
+  .content .pageNumbers li button:focus {
+    outline: none;
+  }
+
+  @media (max-width: 800px) {
+    .content .pageNumbers {
+        display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      text-align: -webkit-center;
+      padding: 0px;
+    }
+
+    .content .pageNumbers li button {
+        background-color: transparent;
+        border: none;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+    
+      .content .pageNumbers li {
+        padding: 1px;
+        border: 1px solid white;
+        cursor: pointer;
+      }
+}
