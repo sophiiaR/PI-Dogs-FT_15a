@@ -2,7 +2,7 @@ const { Router } = require('express');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 const axios = require('axios');
-const { Dog, Temperament } = require('../db.js');
+const { Dog, Temperament, dogs_temperaments } = require('../db.js');
 const { API_KEY } = process.env;
 
 const router = Router();
@@ -77,7 +77,7 @@ router.get('/temperament', async (req,res) => {
 		//console.log(temp.flat());
 		const tempList = temp.flat().map(el => el && el.trim())
 		let unique = [...new Set(tempList)].sort();
-		console.log(unique);
+		//console.log(unique);
 
 		unique.forEach(temperament => {
 			temperament && Temperament.findOrCreate({
@@ -94,11 +94,11 @@ router.get('/temperament', async (req,res) => {
 	}
 });
 
-router.get('/dogs/:idRaza', async (req,res) => {
-	const { idRaza } = req.params;
+router.get('/dogs/:id', async (req,res) => {
+	const { id } = req.params;
 	const totalDogs = await getAllDogs();
-	if(idRaza) {
-		const dogId = await totalDogs.filter(dog => dog.id == idRaza);
+	if(id) {
+		const dogId = await totalDogs.filter(dog => dog.id == id);
 		dogId.length ? res.status(200).json(dogId) : res.status(404).send('Sorry! That dog does not exist')
 	}
 });
@@ -130,7 +130,23 @@ router.post('/dog', async (req,res) => {
 	})
 
 	dogCreated.addTemperament(dogTemperamentDb);
-	res.send('The dog was created successfully!');
+	res.send(dogCreated);
 });
 
 module.exports = router;
+
+
+// const getAllDogs = () => {
+// 	return Promise.all([getDogsApi(),getDogsDb()])
+// 	.then((data) => {
+// 		const apiData = data[0];
+// 		const dbData = data[1];
+// 		const totalDogs = apiData.concat(dbData);
+// 		return totalDogs 
+// 	})
+// 	.catch((error) => {
+// 		console.log(error)
+// 	})
+// }
+// var arr = [];
+// const arr5 = arr.map()
