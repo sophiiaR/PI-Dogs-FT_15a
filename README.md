@@ -73,7 +73,13 @@ npm install
 Finally, execute `npm start` in both folders.
 
 ## Screenshots
+#### Landing Page
+![landing](https://user-images.githubusercontent.com/78318499/144047950-61d88353-158a-479c-9be9-98731b2b3432.png)
 
+#### Home Page
+![home](https://user-images.githubusercontent.com/78318499/144048298-3d47bbc8-0797-4133-b954-d2b1dcade751.png)
 
+#### Detail Page
+![detail](https://user-images.githubusercontent.com/78318499/144048367-27744c33-17bc-49dd-af64-925f4079bdfc.png)
 
 
